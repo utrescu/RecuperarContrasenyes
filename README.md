@@ -9,34 +9,6 @@ El sistema on treballaven els treballadors despatxats és un Linux. En Linux les
 
 ![contrasenyes](https://raw.githubusercontent.com/utrescu/utrescu.github.io/master/images/shadow.png)
 
-### Llibreria de suport
-Heu trobat una llibreria que us permet comprovar les contrasenyes 
-
-[Descarregar](https://drive.google.com/file/d/0BxakKCNfTojqUU1USmpVRy0tZ2c/view?usp=sharing "llibreria")
-
-La llibreria té tres mètodes que ens interessen:
-
-* **boolean comprova(String usuari, String contrasenya)** : Diu si la contrasenya d’aquest usuari és correcta o no
-* **String[] getUsuaris()**: Retorna la llista d’usuaris del sistema
-* **void afegirUsuari(String usuari, String hash)**: Permet afegir un usuari a la llista dels que s’han de descobrir. S’hi passa el nom de l’usuari i la codificació de la contrasenya
-
-El funcionament del programa, sembla que l’hagi fet un professor per forçar als alumnes a treballar, consisteix en:
-
-1. Obtenir l'usuari i la contrasenya xifrada dels treballadors i entrar-les amb `afegirUsuari`. 
-2. Executar el mètode `comprova` amb un dels usuaris amb una contrasenya i ens dirà si l'ha trobat o no. Aquest mètode es pot repetir tantes vegades com calgui
-
-Per exemple entrem l’usuari ‘pere’ i comprovem si la contrasenya és ‘password’ o no:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java
-ComprovaContrasenya prova = new ComprovaContrasenya();
-
-prova.afegirUsuari("Pere", "$6$hJFtcavV$OSEDo7JuAbTuK2Q…";
-
-if  (prova.comprova("Pere", "password")) {
-	System.out.println("LA CONTRASENYA ÉS password");
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	    	
-
 Tasca
 ------------------
 
@@ -65,16 +37,24 @@ Programa
 ====================================
 El programa s'executa des de línia de comandes. S'hi poden afegir paràmetres per indicar arxius que no són els que es fan servir per defecte:
 
-~~~~bash
-$ go build contrasenyes.go
-[xavier@pilaf contrasenyes]$ ./contrasenyes -diccionari diccionaris/john.txt -shadow shadow
-Els usuaris són 5
-------------------------------------
-manel:coffee
-marcel:orange
-pepet: contrasenya no trobada
-manolo: contrasenya no trobada
-frederic: contrasenya no trobada
-2017/10/26 12:11:58 Ha tardat 16.20090154s
-~~~~
+
+     $ go build contrasenyes.go
+     $ ./contrasenyes -h
+     Usage of ./contrasenyes:
+      -diccionari string
+            diccionari de paraules (default "file.txt")
+      -shadow string
+            Fitxer de contrasenyes (default "shadow")
+
+O sigui que podem iniciar el programa especificant on són el dos fitxers (diccionari i shadow):
+       
+    $ ./contrasenyes -diccionari diccionaris/john.txt -shadow shadow
+    Els usuaris són 5
+
+    manel:coffee
+    marcel:orange
+    pepet: contrasenya no trobada
+    manolo: contrasenya no trobada
+    frederic: contrasenya no trobada
+    2017/10/26 12:11:58 Ha tardat 16.20090154s
 
