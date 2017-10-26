@@ -38,16 +38,16 @@ Programa
 El programa s'executa des de línia de comandes. S'hi poden afegir paràmetres per indicar arxius que no són els que es fan servir per defecte:
 
 
-     ./contrasenyes -h
-    Usage of ./contrasenyes:
+     $ go build contrasenyes.go
+     $ ./contrasenyes -h
+     Usage of ./contrasenyes:
       -diccionari string
             diccionari de paraules (default "file.txt")
       -shadow string
             Fitxer de contrasenyes (default "shadow")
 
 O sigui que podem iniciar el programa especificant on són el dos fitxers (diccionari i shadow):
-   
-    $ go build contrasenyes.go
+       
     $ ./contrasenyes -diccionari diccionaris/john.txt -shadow shadow
     Els usuaris són 5
 
