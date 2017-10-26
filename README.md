@@ -37,16 +37,24 @@ Programa
 ====================================
 El programa s'executa des de línia de comandes. S'hi poden afegir paràmetres per indicar arxius que no són els que es fan servir per defecte:
 
-~~~~bash
-$ go build contrasenyes.go
-[xavier@pilaf contrasenyes]$ ./contrasenyes -diccionari diccionaris/john.txt -shadow shadow
-Els usuaris són 5
-------------------------------------
-manel:coffee
-marcel:orange
-pepet: contrasenya no trobada
-manolo: contrasenya no trobada
-frederic: contrasenya no trobada
-2017/10/26 12:11:58 Ha tardat 16.20090154s
-~~~~
+
+     ./contrasenyes -h
+    Usage of ./contrasenyes:
+      -diccionari string
+            diccionari de paraules (default "file.txt")
+      -shadow string
+            Fitxer de contrasenyes (default "shadow")
+
+O sigui que podem iniciar el programa especificant on són el dos fitxers (diccionari i shadow):
+   
+    $ go build contrasenyes.go
+    $ ./contrasenyes -diccionari diccionaris/john.txt -shadow shadow
+    Els usuaris són 5
+
+    manel:coffee
+    marcel:orange
+    pepet: contrasenya no trobada
+    manolo: contrasenya no trobada
+    frederic: contrasenya no trobada
+    2017/10/26 12:11:58 Ha tardat 16.20090154s
 
